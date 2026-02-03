@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../../data/local/model.dart';
-import '../../../state_management/net_income_provider.dart';
+import '../../../provider/net_income_provider.dart';
 import '../../../themes/colors.dart';
+import '../../../themes/theme.dart';
 
 class IncomeSection extends StatefulWidget {
   const IncomeSection({super.key});
@@ -85,19 +86,20 @@ class _IncomeSectionState extends State<IncomeSection> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     print("main widget build");
     return Scaffold(
-      backgroundColor: MyColor.bgApp,
+      backgroundColor: colors.bgApp,
       appBar: AppBar(
-        backgroundColor: MyColor.bgApp,
+        backgroundColor: colors.bgApp,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          "Profile",
+          "Income",
           style: GoogleFonts.inter(
-            color: MyColor.textMain,
+            color: colors.textMain,
             fontSize: 22.sp,
             fontWeight: FontWeight.bold,
           ),
@@ -214,7 +216,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                           ),
                           prefixIcon: Icon(
                             Icons.currency_bitcoin,
-                            color: MyColor.marketUp,
+                            color: colors.marketUp,
                           ),
                           suffixIcon: netIncomeCtrl.text.isNotEmpty
                               ? IconButton(
@@ -271,7 +273,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                             ),
                           ),
                           trailing: Switch.adaptive(
-                            activeTrackColor: MyColor.marketUp,
+                            activeTrackColor: colors.marketUp,
                             inactiveTrackColor: const Color(0xFF2a2a2a),
                             value: recurringIncomeSwitch,
                             onChanged: (value) {
@@ -306,11 +308,11 @@ class _IncomeSectionState extends State<IncomeSection> {
                               children: [
                                 TextSpan(
                                   text: '67% ',
-                                  style: TextStyle(color: MyColor.marketUp),
+                                  style: TextStyle(color: colors.marketUp),
                                 ),
                                 TextSpan(
                                   text: 'Allocated',
-                                  style: TextStyle(color: MyColor.textMuted),
+                                  style: TextStyle(color: colors.textMuted),
                                 ),
                               ],
                             ),
@@ -325,7 +327,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                         minHeight: 8.h,
                         borderRadius: BorderRadius.circular(12.r),
                         backgroundColor: Colors.grey.withOpacity(0.3),
-                        valueColor: AlwaysStoppedAnimation(MyColor.marketUp),
+                        valueColor: AlwaysStoppedAnimation(colors.marketUp),
                       ),
 
                       SizedBox(height: 12.h),
@@ -336,7 +338,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                             "\$3350.00 Allocated",
                             style: GoogleFonts.inter(
                               fontSize: 13.sp,
-                              color: MyColor.textMuted,
+                              color: colors.textMuted,
                             ),
                           ),
                           const Spacer(),
@@ -344,7 +346,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                             "\$1650.00 Unassigned",
                             style: GoogleFonts.inter(
                               fontSize: 13.sp,
-                              color: MyColor.textMuted,
+                              color: colors.textMuted,
                             ),
                           ),
                         ],
@@ -374,7 +376,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                             background: Container(
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              color: MyColor.marketUp,
+                              color: colors.marketUp,
                               child: Icon(Icons.push_pin, color: Colors.white),
                             ),
                             child: Padding(
@@ -398,6 +400,7 @@ class _IncomeSectionState extends State<IncomeSection> {
   }
 
   Widget _items(DemoData data, int index) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Card(
       elevation: 6,
       shadowColor: Colors.black.withOpacity(0.45),
@@ -459,10 +462,10 @@ class _IncomeSectionState extends State<IncomeSection> {
                 child: SliderTheme(
                   data: SliderTheme.of(context).copyWith(
                     trackHeight: 8.h,
-                    activeTrackColor: MyColor.marketUp,
+                    activeTrackColor: colors.marketUp,
                     inactiveTrackColor: Colors.grey.withOpacity(0.3),
-                    thumbColor: MyColor.marketUp,
-                    overlayColor: MyColor.marketUp.withOpacity(0.15),
+                    thumbColor: colors.marketUp,
+                    overlayColor: colors.marketUp.withOpacity(0.15),
                     thumbShape: const RoundSliderThumbShape(
                       enabledThumbRadius: 7,
                     ),
@@ -528,7 +531,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                       text:   "Spent ",
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
-                          color: MyColor.textMuted,
+                          color: colors.textMuted,
                         ),
                       ),
                       TextSpan(

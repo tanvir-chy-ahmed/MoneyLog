@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 
+import '../../../themes/theme.dart';
+
 class CardThree extends StatelessWidget {
   String img;
   String text;
@@ -19,6 +21,7 @@ class CardThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.46.w,
       height: MediaQuery.of(context).size.height * 0.15.h,
@@ -55,9 +58,9 @@ class CardThree extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.r),
                       color: Color(0xFF2a2a2a), // Replaced 0xFF342b30
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add, // Specific icon from snippet
-                      color: MyColor.marketUp,
+                      color: colors.marketUp,
                     ),
                   ),
 
@@ -76,7 +79,7 @@ class CardThree extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
-                  color: MyColor.textMain,
+                  color: colors.textMain,
                 ),
               ),
               Spacer(),
@@ -91,7 +94,7 @@ class CardThree extends StatelessWidget {
                 value: 0.4,
 
                 backgroundColor: Colors.grey.withOpacity(0.3),
-                valueColor: AlwaysStoppedAnimation<Color>(MyColor.marketUp),
+                valueColor: AlwaysStoppedAnimation<Color>(colors.marketUp),
               ),
             ],
           ),

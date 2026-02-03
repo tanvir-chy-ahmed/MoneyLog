@@ -5,6 +5,7 @@ import 'package:moneylog/presentation/widgets/datebox.dart';
 import 'package:moneylog/presentation/widgets/spacer.dart';
 
 import '../../../themes/colors.dart';
+import '../../../themes/theme.dart';
 
 class LivingroomBottomSheet extends StatefulWidget {
   const LivingroomBottomSheet({super.key});
@@ -66,6 +67,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFF1a1a1a),
@@ -92,7 +94,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
                           fontWeight: FontWeight.bold,
                           fontSize: 18.sp,
                           color: Colors
-                              .white, // Replaced MyColor.textMain for the example
+                              .white, // Replaced colors.textMain for the example
                         ),
                       ),
                       IconButton(
@@ -151,7 +153,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: MyColor.marketUp),
+                          borderSide: BorderSide(color: colors.marketUp),
                         ),
                       ),
                       style: TextStyle(
@@ -227,7 +229,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: MyColor.marketUp),
+                          borderSide: BorderSide(color: colors.marketUp),
                         ),
                       ),
                       style: TextStyle(
@@ -426,7 +428,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
   //         contentPadding: EdgeInsets.zero,
   //       ),
   //
-  //       cursorColor: MyColor.marketUp,
+  //       cursorColor: colors.marketUp,
   //
   //       /// 🔵 AUTO SELECT FULL VALUE ON TAP
   //       onTap: () {

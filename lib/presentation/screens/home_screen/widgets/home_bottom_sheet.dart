@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 import 'package:moneylog/presentation/widgets/spacer.dart';
 
+import '../../../themes/theme.dart';
 import '../../../widgets/datebox.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -74,6 +75,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFF1a1a1a),
@@ -100,7 +102,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                           fontWeight: FontWeight.bold,
                           fontSize: 18.sp,
                           color: Colors
-                              .white, // Replaced MyColor.textMain for the example
+                              .white, // Replaced colors.textMain for the example
                         ),
                       ),
                       IconButton(
@@ -243,7 +245,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: MyColor.marketUp),
+                          borderSide: BorderSide(color: colors.marketUp),
                         ),
                       ),
                       style: TextStyle(
@@ -439,7 +441,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: MyColor.marketUp),
+                          borderSide: BorderSide(color: colors.marketUp),
                         ),
                       ),
                       style: TextStyle(

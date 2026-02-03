@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/screens/profile_screen/widgets/income_section.dart';
 import 'package:moneylog/presentation/screens/profile_screen/widgets/profile_section.dart';
-
+import 'package:provider/provider.dart';
+import '../../provider/theme_changer.dart';
 import '../../themes/colors.dart';
+import '../../themes/theme.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -44,10 +46,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+    final themeMode = Provider.of<ThemeChangerProvider>(context);
     return Scaffold(
-      backgroundColor: MyColor.bgApp,
+      backgroundColor: colors.bgApp,
       appBar: AppBar(
-        backgroundColor: MyColor.bgApp,
+        backgroundColor: colors.bgApp,
         elevation: 0,
         automaticallyImplyLeading: false,
         titleSpacing: 16,
@@ -60,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(
               "Settings",
               style: GoogleFonts.inter(
-                color: MyColor.textMain,
+                color: colors.textMain,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -86,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Card(
                 elevation: 6,
                 shadowColor: Colors.black.withOpacity(0.45),
-                color: const Color(0xFF171616),
+                color: colors.bgCard,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(22.r),
                   side: BorderSide(
@@ -113,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: Icons.currency_bitcoin,
                           title: "Income & Setup",
                           subtitle: "Manage budget allocations",
-                          icColor: MyColor.marketUp,
+                          icColor: colors.marketUp,
                           icbgColor: Color(0xFF15241d),
                         ),
                       ),
@@ -147,11 +151,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Card(
                 elevation: 6,
                 shadowColor: Colors.black.withOpacity(0.45),
-                color: const Color(0xFF171616),
+                color: colors.bgCard,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(22.r),
                   side: BorderSide(
-                    color: Colors.white.withOpacity(0.10),
+                    color: colors.bgCard.withOpacity(0.10),
                     width: 0.8.w,
                   ),
                 ),
@@ -269,17 +273,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(
                             children: [
                               // DARK CHIP
-                              GestureDetector(
+                              InkWell(
                                 onTap: () {
-                                  setState(() {
-                                    isDark = true;
-                                  });
+                                  themeMode.setTheme(ThemeMode.dark);
                                 },
                                 child: Container(
                                   height: double.infinity,
                                   width: 50.w,
                                   decoration: BoxDecoration(
-                                    color: isDark
+                                    color: themeMode.isDark
                                         ? Colors.white
                                         : Colors.transparent,
                                     borderRadius: BorderRadius.circular(6.r),
@@ -288,11 +290,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Text(
                                       "Dark",
                                       style: TextStyle(
-                                        color: isDark
+                                        color: themeMode.isDark
                                             ? Colors.black
                                             : Colors.white,
                                         fontSize: 13.sp,
-                                        fontWeight: isDark
+                                        fontWeight: themeMode.isDark
                                             ? FontWeight.w600
                                             : FontWeight.normal,
                                       ),
@@ -301,18 +303,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
 
+
                               // LIGHT CHIP
-                              GestureDetector(
+                              InkWell(
                                 onTap: () {
-                                  setState(() {
-                                    isDark = false;
-                                  });
+                                  themeMode.setTheme(ThemeMode.light);
                                 },
                                 child: Container(
                                   height: double.infinity,
                                   width: 50.w,
                                   decoration: BoxDecoration(
-                                    color: !isDark
+                                    color: !themeMode.isDark
                                         ? Colors.white
                                         : Colors.transparent,
                                     borderRadius: BorderRadius.circular(6.r),
@@ -321,11 +322,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Text(
                                       "Light",
                                       style: TextStyle(
-                                        color: !isDark
+                                        color: !themeMode.isDark
                                             ? Colors.black
                                             : Colors.white,
                                         fontSize: 13.sp,
-                                        fontWeight: !isDark
+                                        fontWeight: !themeMode.isDark
                                             ? FontWeight.w600
                                             : FontWeight.normal,
                                       ),

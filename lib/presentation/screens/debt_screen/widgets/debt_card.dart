@@ -3,11 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 
+import '../../../themes/theme.dart';
+
 class DebtCard extends StatelessWidget {
   const DebtCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.22,
       width: double.infinity,
@@ -39,7 +42,7 @@ class DebtCard extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Icon(Icons.delete_outlined, color: MyColor.marketDown),
+                  Icon(Icons.delete_outlined, color: colors.marketDown),
                 ],
               ),
 
@@ -57,7 +60,7 @@ class DebtCard extends StatelessWidget {
                           style: GoogleFonts.roboto(
                             fontSize: 25.sp,
                             fontWeight: FontWeight.w700,
-                            color: MyColor.info2Color,
+                            color: colors.info2,
                           ),
                         ),
                         TextSpan(
@@ -65,7 +68,7 @@ class DebtCard extends StatelessWidget {
                           style: GoogleFonts.roboto(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
-                            color: MyColor.info2Color,
+                            color: colors.info2,
                           ),
                         ),
                       ],
@@ -75,7 +78,7 @@ class DebtCard extends StatelessWidget {
                   SizedBox(width: 5.w),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.edit, color: MyColor.textMuted),
+                    icon: Icon(Icons.edit, color: colors.textMuted),
                   ),
                   const Spacer(),
                 ],
@@ -119,7 +122,7 @@ class DebtCard extends StatelessWidget {
                 minHeight: 4.h,
                 borderRadius: BorderRadius.circular(12.r),
                 backgroundColor: Colors.grey.withOpacity(0.3),
-                valueColor: AlwaysStoppedAnimation<Color>(MyColor.marketUp),
+                valueColor: AlwaysStoppedAnimation<Color>(colors.marketUp),
               ),
             ],
           ),

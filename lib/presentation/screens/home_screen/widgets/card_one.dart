@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/screens/profile_screen/widgets/income_section.dart';
-import 'package:moneylog/presentation/state_management/net_income_provider.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 import 'package:provider/provider.dart';
+
+import '../../../provider/net_income_provider.dart';
+import '../../../themes/theme.dart';
+
 class CardOne extends StatelessWidget {
   const CardOne({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     print("main widget rebuild");
 
     return SizedBox(
@@ -44,7 +48,7 @@ class CardOne extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w500,
                       fontSize: 15.sp,
-                      color: MyColor.textMuted,
+                      color: colors.textMuted,
                     ),
                   ),
                   const Spacer(),
@@ -53,12 +57,12 @@ class CardOne extends StatelessWidget {
                     width: 40.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.r),
-                      color: MyColor.bgCard, // Replaced 0xFF342b30
+                      color: colors.bgCard, // Replaced 0xFF342b30
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.currency_bitcoin_outlined,
                       // Specific icon from snippet
-                      color: MyColor.primary,
+                      color: colors.primary,
                     ),
                   ),
                 ],
@@ -68,18 +72,19 @@ class CardOne extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-
-                  Consumer<NetIncomeProvider>(builder: (context,value,child){
-                    print("text widget rebuild");
-                    return Text(
-                      value.totalBudget.toString(),
-                      style: GoogleFonts.roboto(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
-                        color: MyColor.textMain,
-                      ),
-                    );
-                  }),
+                  Consumer<NetIncomeProvider>(
+                    builder: (context, value, child) {
+                      print("text widget rebuild");
+                      return Text(
+                        value.totalBudget.toString(),
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: colors.textMain,
+                        ),
+                      );
+                    },
+                  ),
 
                   SizedBox(width: 5.w),
                   IconButton(
@@ -109,7 +114,7 @@ class CardOne extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: Icon(Icons.edit, color: MyColor.textMuted),
+                    icon: Icon(Icons.edit, color: colors.textMuted),
                   ),
                   const Spacer(),
                 ],
@@ -124,7 +129,7 @@ class CardOne extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w500,
                   fontSize: 15.sp,
-                  color: MyColor.textMuted,
+                  color: colors.textMuted,
                 ),
               ),
               Text(
@@ -132,7 +137,7 @@ class CardOne extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   fontSize: 33.sp,
-                  color: MyColor.textMain,
+                  color: colors.textMain,
                 ),
               ),
             ],

@@ -2,13 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moneylog/presentation/provider/net_income_provider.dart';
+import 'package:moneylog/presentation/provider/theme_changer.dart';
 import 'package:moneylog/presentation/screens/analytics_screen/analytics_screen.dart';
 import 'package:moneylog/presentation/screens/debt_screen/debt_screen.dart';
 import 'package:moneylog/presentation/screens/home_screen/widgets/home_bottom_sheet.dart';
 import 'package:moneylog/presentation/screens/living_room_screen/livingroom.dart';
 import 'package:moneylog/presentation/screens/living_room_screen/widgets/livingroom_bottom_sheet.dart';
-import 'package:moneylog/presentation/state_management/net_income_provider.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
+import 'package:moneylog/presentation/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 import 'presentation/screens/home_screen/home_screen.dart';
@@ -24,31 +26,75 @@ class AppRoot extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => NetIncomeProvider())
+        ChangeNotifierProvider(create: (_) => NetIncomeProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeChangerProvider()),
+
       ],
-      child: const MainScreen(),
+      child: Builder(
+        builder: (BuildContext context) {
+          final themechanger = Provider.of<ThemeChangerProvider>(context);
+          return ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, _) {
+              return MaterialApp(
+                theme: ThemeData(
+                  extensions: const [
+                    AppColors(
+                      bgApp: MyColor.lightBgApp,
+                      bgCard: MyColor.lightBgCard,
+                      bgModal: Colors.white,
+                      bgInput: Color(0xFFEAEAEA),
+                      primary: MyColor.primary,
+                      secondary: MyColor.secondary,
+                      success: MyColor.success,
+                      danger: MyColor.danger,
+                      warning: MyColor.warning,
+                      info: MyColor.info,
+                      textMain: Colors.black,
+                      textMuted: MyColor.lightTextMuted,
+                      marketUp: MyColor.marketUp,
+                      marketDown: MyColor.marketDown,
+                      info2: MyColor.info2Color,
+                    ),
+                  ],
+                ),
+
+                darkTheme: ThemeData(
+                  extensions: const [
+                    AppColors(
+                      bgApp: MyColor.bgApp,
+                      bgCard: MyColor.bgCard,
+                      bgModal: MyColor.bgModal,
+                      bgInput: MyColor.bgInput,
+                      primary: MyColor.primary,
+                      secondary: MyColor.secondary,
+                      success: MyColor.success,
+                      danger: MyColor.danger,
+                      warning: MyColor.warning,
+                      info: MyColor.info,
+                      textMain: MyColor.textMain,
+                      textMuted: MyColor.textMuted,
+                      marketUp: MyColor.marketUp,
+                      marketDown: MyColor.marketDown,
+                      info2: MyColor.info2Color,
+                    ),
+                  ],
+                ),
+
+                themeMode: themechanger.themeMode,
+                debugShowCheckedModeBanner: false,
+                home: const RootScreen(),
+              );
+            },
+          );
+        }
+      )
     );
   }
 }
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, _) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: const RootScreen(),
-        );
-      },
-    );
-  }
-}
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -69,6 +115,7 @@ class _RootScreenState extends State<RootScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Scaffold(
       extendBody: true, // allow floating effect
       floatingActionButton: _currentIndex == 1
@@ -77,7 +124,7 @@ class _RootScreenState extends State<RootScreen> {
               shape: CircleBorder(),
               backgroundColor: _currentIndex == 2
                   ? Color(0xFFfe754c)
-                  : MyColor.marketUp,
+                  : colors.marketUp,
               onPressed: () {
                 if (_currentIndex == 0) {
                   showModalBottomSheet(
@@ -159,7 +206,7 @@ class _RootScreenState extends State<RootScreen> {
         child: Icon(
           icon,
           size: isSelected ? 24.h : 20.h, // Subtle scale effect
-          color: isSelected ? Colors.blue : Colors.white.withOpacity(0.7),
+          color: isSelected ? Colors.black : Colors.white.withOpacity(0.7),
         ),
       ),
     );

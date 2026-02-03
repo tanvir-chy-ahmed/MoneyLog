@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/data/local/model.dart';
 
 import '../../themes/colors.dart';
+import '../../themes/theme.dart';
 
 class LivingRoom extends StatefulWidget {
   const LivingRoom({super.key});
@@ -93,8 +94,9 @@ class _LivingRoomState extends State<LivingRoom> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Scaffold(
-      backgroundColor: MyColor.bgApp,
+      backgroundColor: colors.bgApp,
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -104,7 +106,7 @@ class _LivingRoomState extends State<LivingRoom> {
               pinned: false, // scrolls away
               floating: false,
               snap: false,
-              backgroundColor: MyColor.bgApp,
+              backgroundColor: colors.bgApp,
               elevation: 0,
               automaticallyImplyLeading: false,
               expandedHeight: kToolbarHeight + 10.h,
@@ -114,7 +116,7 @@ class _LivingRoomState extends State<LivingRoom> {
                 child: Text(
                   "Living Room Upgrade",
                   style: GoogleFonts.inter(
-                    color: MyColor.textMain,
+                    color: colors.textMain,
                     fontSize: 20.sp, // FIXED SIZE
                     fontWeight: FontWeight.bold,
                   ),
@@ -157,7 +159,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.sp,
-                                    color: MyColor.textMuted,
+                                    color: colors.textMuted,
                                   ),
                                 ),
                                 const Spacer(),
@@ -183,7 +185,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                         style: GoogleFonts.roboto(
                                           fontSize: 33.sp,
                                           fontWeight: FontWeight.w700,
-                                          color: MyColor.textMain,
+                                          color: colors.textMain,
                                         ),
                                       ),
                                       TextSpan(
@@ -191,7 +193,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                         style: GoogleFonts.roboto(
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w600,
-                                          color: MyColor.textMuted,
+                                          color: colors.textMuted,
                                         ),
                                       ),
                                     ],
@@ -202,7 +204,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                   onPressed: () {},
                                   icon: Icon(
                                     Icons.edit,
-                                    color: MyColor.textMuted,
+                                    color: colors.textMuted,
                                   ),
                                 ),
                               ],
@@ -214,7 +216,7 @@ class _LivingRoomState extends State<LivingRoom> {
                               borderRadius: BorderRadius.circular(12.r),
                               backgroundColor: Colors.grey.withOpacity(0.3),
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                MyColor.marketUp,
+                                colors.marketUp,
                               ),
                             ),
                             SizedBox(height: 8.h),
@@ -226,7 +228,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13.sp,
-                                    color: MyColor.textMuted,
+                                    color: colors.textMuted,
                                   ),
                                 ),
                                 const Spacer(),
@@ -235,7 +237,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13.sp,
-                                    color: MyColor.textMuted,
+                                    color: colors.textMuted,
                                   ),
                                 ),
                               ],
@@ -248,7 +250,7 @@ class _LivingRoomState extends State<LivingRoom> {
                                   style: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15.sp,
-                                    color: MyColor.marketUp,
+                                    color: colors.marketUp,
                                   ),
                                 ),
                                 const Spacer(),
@@ -287,7 +289,7 @@ class _LivingRoomState extends State<LivingRoom> {
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           fontSize: 13.sp,
-                          color: MyColor.marketUp,
+                          color: colors.marketUp,
                         ),
                       ),
                     ],
@@ -304,7 +306,7 @@ class _LivingRoomState extends State<LivingRoom> {
                         background: Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          color: MyColor.marketUp,
+                          color: colors.marketUp,
                           child: const Icon(
                             Icons.push_pin,
                             color: Colors.white,
@@ -325,7 +327,7 @@ class _LivingRoomState extends State<LivingRoom> {
     );
 
     //   Container(
-    //   color: MyColor.bgApp,
+    //   color: colors.bgApp,
     //   child: SafeArea(
     //     child: Column(
     //       children: [
@@ -333,7 +335,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //         PreferredSize(
     //           preferredSize: Size.fromHeight(kToolbarHeight + 10.h),
     //           child: AppBar(
-    //             backgroundColor: MyColor.bgApp,
+    //             backgroundColor: colors.bgApp,
     //             elevation: 0,
     //             automaticallyImplyLeading: false,
     //             // Prevents accidental back buttons
@@ -343,7 +345,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //               child: Text(
     //                 "Expense Items",
     //                 style: GoogleFonts.inter(
-    //                   color: MyColor.textMain,
+    //                   color: colors.textMain,
     //                   fontSize: 22.sp,
     //                   fontWeight: .bold,
     //                 ),
@@ -398,7 +400,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                 style: GoogleFonts.inter(
     //                                   fontWeight: FontWeight.w500,
     //                                   fontSize: 15.sp,
-    //                                   color: MyColor.textMuted,
+    //                                   color: colors.textMuted,
     //                                 ),
     //                               ),
     //                               const Spacer(),
@@ -428,7 +430,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                       style: GoogleFonts.roboto(
     //                                         fontSize: 33.sp,
     //                                         fontWeight: FontWeight.w700,
-    //                                         color: MyColor.textMain,
+    //                                         color: colors.textMain,
     //                                       ),
     //                                     ),
     //                                     TextSpan(
@@ -436,7 +438,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                       style: GoogleFonts.roboto(
     //                                         fontSize: 14.sp,
     //                                         fontWeight: FontWeight.w600,
-    //                                         color: MyColor.textMuted,
+    //                                         color: colors.textMuted,
     //                                       ),
     //                                     ),
     //                                   ],
@@ -448,7 +450,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                 onPressed: () {},
     //                                 icon: Icon(
     //                                   Icons.edit,
-    //                                   color: MyColor.textMuted,
+    //                                   color: colors.textMuted,
     //                                 ),
     //                               ),
     //                               const Spacer(),
@@ -463,7 +465,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                             borderRadius: BorderRadius.circular(12.r),
     //                             backgroundColor: Colors.grey.withOpacity(0.3),
     //                             valueColor: AlwaysStoppedAnimation<Color>(
-    //                               MyColor.marketUp,
+    //                               colors.marketUp,
     //                             ),
     //                           ),
     //
@@ -482,7 +484,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                 style: GoogleFonts.inter(
     //                                   fontWeight: FontWeight.w500,
     //                                   fontSize: 13.sp,
-    //                                   color: MyColor.textMuted,
+    //                                   color: colors.textMuted,
     //                                 ),
     //                               ),
     //                               const Spacer(),
@@ -491,7 +493,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                 style: GoogleFonts.inter(
     //                                   fontWeight: FontWeight.w500,
     //                                   fontSize: 13.sp,
-    //                                   color: MyColor.textMuted,
+    //                                   color: colors.textMuted,
     //                                 ),
     //                               ),
     //                             ],
@@ -507,7 +509,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                                 style: GoogleFonts.roboto(
     //                                   fontWeight: FontWeight.bold,
     //                                   fontSize: 15.sp,
-    //                                   color: MyColor.marketUp,
+    //                                   color: colors.marketUp,
     //                                 ),
     //                               ),
     //                               const Spacer(),
@@ -546,7 +548,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                       style: GoogleFonts.roboto(
     //                         fontWeight: FontWeight.bold,
     //                         fontSize: 13.sp,
-    //                         color: MyColor.marketUp,
+    //                         color: colors.marketUp,
     //                       ),
     //                     ),
     //                   ],
@@ -566,7 +568,7 @@ class _LivingRoomState extends State<LivingRoom> {
     //                       background: Container(
     //                         alignment: Alignment.centerLeft,
     //                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-    //                         color: MyColor.marketUp,
+    //                         color: colors.marketUp,
     //                         child: Icon(Icons.push_pin, color: Colors.white),
     //                       ),
     //                       child: Padding(
@@ -590,6 +592,7 @@ class _LivingRoomState extends State<LivingRoom> {
   }
 
   Widget _items(DemoData data, int index) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     // Determine box and text color based on flags
     Color boxColor;
     Color textColor;
@@ -689,8 +692,8 @@ class _LivingRoomState extends State<LivingRoom> {
                 fontWeight: FontWeight.bold,
                 fontSize: 16.sp,
                 color: data.isSwitched
-                    ? applyDark(MyColor.textMain)
-                    : MyColor.textMain,
+                    ? applyDark(colors.textMain)
+                    : colors.textMain,
                 decoration: data.isSwitched ? TextDecoration.lineThrough : null,
                 decorationThickness: data.isSwitched ? 2 : null,
               ),
@@ -704,8 +707,8 @@ class _LivingRoomState extends State<LivingRoom> {
                 fontWeight: FontWeight.bold,
                 fontSize: 15.sp,
                 color: data.isSwitched
-                    ? applyDark(MyColor.marketUp)
-                    : MyColor.marketUp,
+                    ? applyDark(colors.marketUp)
+                    : colors.marketUp,
                 decoration: data.isSwitched ? TextDecoration.lineThrough : null,
                 decorationThickness: data.isSwitched ? 2 : null,
               ),
@@ -717,7 +720,7 @@ class _LivingRoomState extends State<LivingRoom> {
         trailing: Transform.scale(
           scale: 0.9,
           child: Switch.adaptive(
-            activeTrackColor: MyColor.marketUp,
+            activeTrackColor: colors.marketUp,
             inactiveTrackColor: const Color(0xFF2a2a2a),
             value: data.isSwitched,
             onChanged: (value) {

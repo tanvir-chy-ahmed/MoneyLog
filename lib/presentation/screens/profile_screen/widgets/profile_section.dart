@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../themes/colors.dart';
+import '../../../themes/theme.dart';
 
 class ProfileSection extends StatefulWidget {
   const ProfileSection({super.key});
@@ -19,20 +20,21 @@ class _ProfileSectionState extends State<ProfileSection> {
   @override
   void dispose() {
     nameCtrl.dispose();
-
+    nameFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     String firstLetter = nameCtrl.text.trim().isNotEmpty
         ? nameCtrl.text.trim()[0]
         : "";
 
     return Scaffold(
-      backgroundColor: MyColor.bgApp,
+      backgroundColor: colors.bgApp,
       appBar: AppBar(
-        backgroundColor: MyColor.bgApp,
+        backgroundColor: colors.bgApp,
         leading: GestureDetector(
           child: Icon(Icons.arrow_back, color: Colors.white),
           onTap: () async {
@@ -42,7 +44,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         title: Text(
           "Profile",
           style: GoogleFonts.inter(
-            color: MyColor.textMain,
+            color: colors.textMain,
             fontSize: 22.sp,
             fontWeight: FontWeight.bold,
           ),

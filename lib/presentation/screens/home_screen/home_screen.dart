@@ -11,6 +11,8 @@ import 'package:moneylog/presentation/screens/home_screen/widgets/card_two.dart'
 import 'package:moneylog/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 
+import '../../themes/theme.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,12 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
   final stocksTitle = ["Exp", "Save", "Debt"];
   final stockBudget = [0, 5000, 0];
   final stockIcon = [Assets.market_down, Assets.market_up, Assets.info];
-  final stockColor = [MyColor.marketDown, MyColor.marketUp, MyColor.info2Color];
+
 
   @override
   Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).extension<AppColors>()!;
+    final stockColor = [colors.marketDown, colors.marketUp, colors.info2];
+
     return Scaffold(
-      backgroundColor: MyColor.bgApp,
+      backgroundColor: colors.bgApp,
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -37,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               pinned: false,
               floating: false,
               snap: false,
-              backgroundColor: MyColor.bgApp,
+              backgroundColor: colors.bgApp,
               elevation: 0,
               automaticallyImplyLeading: false,
               expandedHeight: kToolbarHeight + 10.h,
@@ -46,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   "Dashboard",
                   style: GoogleFonts.inter(
-                    color: MyColor.textMain,
+                    color: colors.textMain,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -120,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
-                          color: MyColor.textMain,
+                          color: colors.textMain,
                         ),
                       ),
                     ),
@@ -155,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.sp,
-                              color: MyColor.textMain,
+                              color: colors.textMain,
                             ),
                           ),
                           TextButton(
@@ -165,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14.sp,
-                                color: MyColor.marketUp,
+                                color: colors.marketUp,
                               ),
                             ),
                           ),
@@ -200,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
-                          color: MyColor.textMain,
+                          color: colors.textMain,
                         ),
                       ),
                     ),
@@ -246,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp,
-                                color: MyColor.textMain,
+                                color: colors.textMain,
                               ),
                             ),
                             subtitle: const Text(

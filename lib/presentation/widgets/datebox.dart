@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../themes/colors.dart';
+import '../themes/theme.dart';
 
 class Datebox extends StatelessWidget {
   final int maxlength;
@@ -21,6 +22,7 @@ class Datebox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return SizedBox(
       width: maxlength == 4 ? 55.w : 30.w,
       child: TextField(
@@ -43,7 +45,7 @@ class Datebox extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
         ),
 
-        cursorColor: MyColor.marketUp,
+        cursorColor: colors.marketUp,
 
         /// 🔵 AUTO SELECT FULL VALUE ON TAP
         onTap: () {

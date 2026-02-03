@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 
+import '../../../themes/theme.dart';
+
 class CardTwo extends StatelessWidget {
   String img;
   String text;
@@ -19,6 +21,7 @@ class CardTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.30.w,
       child: Card(
@@ -66,7 +69,7 @@ class CardTwo extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.roboto(
-                  color: MyColor.textMuted,
+                  color: colors.textMuted,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
                 ),

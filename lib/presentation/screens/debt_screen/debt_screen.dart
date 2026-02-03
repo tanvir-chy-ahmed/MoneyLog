@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/screens/debt_screen/widgets/debt_card.dart';
 import 'package:moneylog/presentation/themes/colors.dart';
 
+import '../../themes/theme.dart';
+
 class DebtScreen extends StatefulWidget {
   const DebtScreen({super.key});
 
@@ -16,8 +18,9 @@ class _DebtScreenState extends State<DebtScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Container(
-      color: MyColor.bgApp,
+      color: colors.bgApp,
       child: SafeArea(
         child: Column(
           children: [
@@ -25,7 +28,7 @@ class _DebtScreenState extends State<DebtScreen> {
             PreferredSize(
               preferredSize: Size.fromHeight(kToolbarHeight + 10.h),
               child: AppBar(
-                backgroundColor: MyColor.bgApp,
+                backgroundColor: colors.bgApp,
                 elevation: 0,
                 automaticallyImplyLeading: false,
                 // Prevents accidental back buttons
@@ -39,7 +42,7 @@ class _DebtScreenState extends State<DebtScreen> {
                       Text(
                         "Debts & Loans",
                         style: GoogleFonts.inter(
-                          color: MyColor.textMain,
+                          color: colors.textMain,
                           fontSize: 22.sp,
                           fontWeight: .bold,
                         ),
