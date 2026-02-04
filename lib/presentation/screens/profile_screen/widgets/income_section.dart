@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../data/local/model.dart';
 import '../../../provider/net_income_provider.dart';
-import '../../../themes/colors.dart';
 import '../../../themes/theme.dart';
 
 class IncomeSection extends StatefulWidget {
@@ -74,7 +74,6 @@ class _IncomeSectionState extends State<IncomeSection> {
 
       isNecessary: true,
     ),
-
   ];
 
   @override
@@ -87,7 +86,9 @@ class _IncomeSectionState extends State<IncomeSection> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
+    final income = int.tryParse(netIncomeCtrl.text) ?? 0;
     print("main widget build");
+
     return Scaffold(
       backgroundColor: colors.bgApp,
       appBar: AppBar(
@@ -147,35 +148,38 @@ class _IncomeSectionState extends State<IncomeSection> {
                             ),
                           ),
 
-                          Consumer<NetIncomeProvider>(builder: (context,value,child){
-                            return  ElevatedButton(
-                              onPressed: () {
-                                // Save All Logic
-                                value.getBudget(netIncomeCtrl.text.trim());
-                                Navigator.pop(context);
-                                print("txt widget build");
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF33c67c),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 24.w,
-                                  vertical: 7.h,
+                          Consumer<NetIncomeProvider>(
+                            builder: (context, value, child) {
+                              return ElevatedButton(
+                                onPressed: () {
+                                  /// Save ALL Button Logic Goes Here
+                                  value.getBudget(income);
+                                  if(income == null) return;
+                                  Navigator.pop(context);
+                                  print("txt widget build");
+                                  ///
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF33c67c),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 24.w,
+                                    vertical: 7.h,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(17.r),
+                                  ),
                                 ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(17.r),
+                                child: Text(
+                                  "SAVE ALL",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              child: Text(
-                                "SAVE ALL",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            );
-                          }),
-
+                              );
+                            },
+                          ),
                         ],
                       ),
 
@@ -192,7 +196,6 @@ class _IncomeSectionState extends State<IncomeSection> {
                       ),
 
                       SizedBox(height: 8.h),
-
 
                       /// TextField
                       TextField(
@@ -381,7 +384,7 @@ class _IncomeSectionState extends State<IncomeSection> {
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 8.h),
-                              child: _items(data, index), // pass index
+                              child: _items(data, index, colors), // pass index
                             ),
                           );
                         },
@@ -399,8 +402,7 @@ class _IncomeSectionState extends State<IncomeSection> {
     );
   }
 
-  Widget _items(DemoData data, int index) {
-    final colors = Theme.of(context).extension<AppColors>()!;
+  Widget _items(DemoData data, int index, AppColors colors) {
     return Card(
       elevation: 6,
       shadowColor: Colors.black.withOpacity(0.45),
@@ -452,7 +454,6 @@ class _IncomeSectionState extends State<IncomeSection> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-
           ),
 
           Row(
@@ -508,10 +509,10 @@ class _IncomeSectionState extends State<IncomeSection> {
             ],
           ),
 
-          SizedBox(height: 5.h,),
+          SizedBox(height: 5.h),
 
           Padding(
-            padding:  EdgeInsets.only(left: 20.w,right: 20.w),
+            padding: EdgeInsets.only(left: 20.w, right: 20.w),
             child: Row(
               children: [
                 Text(
@@ -526,26 +527,25 @@ class _IncomeSectionState extends State<IncomeSection> {
 
                 RichText(
                   text: TextSpan(
-                    children:[
+                    children: [
                       TextSpan(
-                      text:   "Spent ",
+                        text: "Spent ",
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
                           color: colors.textMuted,
                         ),
                       ),
                       TextSpan(
-                      text:   "\$321",
+                        text: "\$321",
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           fontSize: 13.sp,
                           color: Colors.white,
                         ),
                       ),
-                    ]
+                    ],
                   ),
-                )
-
+                ),
               ],
             ),
           ),

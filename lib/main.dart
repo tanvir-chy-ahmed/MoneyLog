@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moneylog/presentation/provider/net_income_provider.dart';
 import 'package:moneylog/presentation/provider/theme_changer.dart';
+import 'package:moneylog/presentation/screens/allocation_screen/allocation_screen.dart';
 import 'package:moneylog/presentation/screens/analytics_screen/analytics_screen.dart';
-import 'package:moneylog/presentation/screens/debt_screen/debt_screen.dart';
 import 'package:moneylog/presentation/screens/home_screen/widgets/home_bottom_sheet.dart';
 import 'package:moneylog/presentation/screens/living_room_screen/livingroom.dart';
 import 'package:moneylog/presentation/screens/living_room_screen/widgets/livingroom_bottom_sheet.dart';
@@ -109,7 +109,7 @@ class _RootScreenState extends State<RootScreen> {
   final List<Widget> _pages = const [
     HomeScreen(),
     AnalyticsScreen(),
-    DebtScreen(),
+    AllocationScreen(),
     LivingRoom(),
   ];
 

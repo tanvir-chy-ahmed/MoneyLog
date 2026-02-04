@@ -75,7 +75,7 @@ class CardThree extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(
-                "Food & Dining",
+                "Macbook Air",
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,

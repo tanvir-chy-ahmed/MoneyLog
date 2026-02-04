@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Details",
+                            "Overview",
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.sp,
