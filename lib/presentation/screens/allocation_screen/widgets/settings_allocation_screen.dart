@@ -39,14 +39,18 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
         child: FloatingActionButton(
           onPressed: () {
             print("Changes saved!");
+
           },
           // Using 'extended' style logic inside a standard FAB
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          child: const Text(
+          child:  Text(
             "Save Changes",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: GoogleFonts.inter(
+              fontSize: 16.sp,
+            fontWeight: .bold
+            )
           ),
         ),
       ),

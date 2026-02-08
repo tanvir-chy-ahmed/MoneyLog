@@ -23,14 +23,13 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          # Using 'any' allows the runner to find the best match for your pubspec
-          flutter-version: '3.27.0'
+          # Pulls the absolute latest stable version (3.38.9+)
           channel: 'stable'
           cache: true
 
       - name: Install Dependencies
         run: |
-          flutter pub get
+          flutter pub upgrade --major-versions
 
       - name: Build Android APK
         run: flutter build apk --release --split-per-abi
@@ -40,7 +39,7 @@ jobs:
         run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
-          mkdir Payload
+          mkdir -p Payload
           cp -R Runner.app Payload/
           zip -r app.ipa Payload
 
