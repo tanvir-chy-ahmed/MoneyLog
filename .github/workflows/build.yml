@@ -41,20 +41,31 @@ jobs:
         with:
           channel: 'stable'
           cache: true
-      - name: Build iOS IPA
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build iOS App Bundle
+        # Use --no-codesign but build specifically for 'ios' (not 'ipa')
+        run: flutter build ios --release --no-codesign
+
+      - name: Manual IPA Creation
         run: |
-          flutter pub get
-          # The --no-codesign flag only works on macOS runners
-          flutter build ios --release --no-codesign 
-          cd build/ios/iphoneos
-          mkdir Payload
-          cp -R Runner.app Payload/
-          zip -r ../../../app.ipa Payload
-      - name: Upload IPA
+          # 1. Create the Payload directory structure required for an IPA
+          mkdir -p Payload
+          
+          # 2. Copy the .app bundle into the Payload folder
+          # The path depends on your project name; usually build/ios/iphoneos/Runner.app
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          
+          # 3. Zip the Payload folder and rename it to .ipa
+          zip -r moneylog.ipa Payload
+
+      - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-release
-          path: app.ipa
+          path: moneylog.ipa
 
   # JOB 3: Create GitHub Release (Combines both)
   release:
