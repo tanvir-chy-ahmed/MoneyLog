@@ -16,31 +16,33 @@ jobs:
     name: Build & Release
     runs-on: windows-latest
     steps:
-      # 1. Checkout with latest v4
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      # 2. Setup Java 17 (Required for modern Gradle/Android versions)
-      - uses: actions/setup-java@v4
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3. Setup Flutter with a version that satisfies Dart SDK 3.11.0+
-      - uses: subosito/flutter-action@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.0' # This version includes Dart 3.1.x
+          # Removing the specific version number forces the latest stable release
           channel: 'stable'
+          cache: true
           architecture: x64
 
-      # 4. Get dependencies and build APK
       - name: Install Dependencies
-        run: flutter pub get
+        run: |
+          flutter clean
+          flutter pub get
 
       - name: Build Android APK
         run: flutter build apk --release --split-per-abi
 
-      # 5. Build iOS IPA (No-codesign)
       - name: Build iOS IPA
+        shell: bash
         run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
@@ -48,7 +50,6 @@ jobs:
           cp -R Runner.app Payload/
           zip -r app.ipa Payload
 
-      # 6. Push to GitHub Releases
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
