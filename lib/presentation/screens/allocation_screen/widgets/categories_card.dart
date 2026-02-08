@@ -18,7 +18,7 @@ class CategoriesCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 20),
         decoration: BoxDecoration(
-          borderRadius: .circular(22.r),
+          borderRadius: BorderRadius.circular(22.r),
           border: Border.all(color: colors.primary, width: 1),
           gradient: LinearGradient(
             colors: [
@@ -30,31 +30,31 @@ class CategoriesCard extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 8,
           children: [
             Row(
-              mainAxisAlignment: .spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  mainAxisAlignment: .start,
-                  crossAxisAlignment: .start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 15,
                   children: [
                     Container(
-                      alignment: .center,
+                      alignment: Alignment.center,
                       height: 30.h,
                       width: 35.w,
                       decoration: BoxDecoration(
                         color: colors.info,
-                        borderRadius: .circular(8.r),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Text(
                         count.toString(),
                         style: GoogleFonts.roboto(
                           fontSize: 22.sp,
-                          fontWeight: .bold,
+                          fontWeight: FontWeight.bold,
                           color: colors.textMain,
                         ),
                       ),
@@ -63,7 +63,7 @@ class CategoriesCard extends StatelessWidget {
                       "Essential",
                       style: GoogleFonts.roboto(
                         fontSize: 18.sp,
-                        fontWeight: .bold,
+                        fontWeight: FontWeight.bold,
                         color: colors.textMain,
                       ),
                     ),
@@ -75,7 +75,7 @@ class CategoriesCard extends StatelessWidget {
                       "36 ${"%"}",
                       style: GoogleFonts.roboto(
                         fontSize: 26.sp,
-                        fontWeight: .bold,
+                        fontWeight: FontWeight.bold,
                         color: Color(0xff6c5dd3),
                       ),
                     ),
@@ -83,7 +83,7 @@ class CategoriesCard extends StatelessWidget {
                       "35-40 ${"%"}",
                       style: GoogleFonts.roboto(
                         fontSize: 13.sp,
-                        fontWeight: .bold,
+                        fontWeight: FontWeight.bold,
                         color: colors.textMuted,
                       ),
                     ),
@@ -104,7 +104,7 @@ class CategoriesCard extends StatelessWidget {
               "৳ 1804.68",
               style: GoogleFonts.roboto(
                 fontSize: 20.sp,
-                fontWeight: .bold,
+                fontWeight: FontWeight.bold,
                 color: colors.textMain,
               ),
             ),

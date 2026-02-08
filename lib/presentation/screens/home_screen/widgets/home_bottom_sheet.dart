@@ -132,7 +132,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
 
                       /// Price Amount Section
                       Row(
-                        crossAxisAlignment: .center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         textBaseline: TextBaseline.alphabetic,
                         // Aligns currency symbol with number base
                         children: [
@@ -251,7 +251,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.white,
-                        fontWeight: .w500,
+                        fontWeight: FontWeight.w500,
                       ),
                       textInputAction: TextInputAction.done,
                       //use next to go next field
@@ -447,7 +447,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.white,
-                        fontWeight: .w400,
+                        fontWeight: FontWeight.w400,
                       ),
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.text,

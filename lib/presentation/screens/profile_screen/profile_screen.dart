@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneylog/presentation/screens/profile_screen/widgets/income_section.dart';
 import 'package:moneylog/presentation/screens/profile_screen/widgets/profile_section.dart';
 import 'package:provider/provider.dart';
+
 import '../../provider/theme_changer.dart';
-import '../../themes/colors.dart';
 import '../../themes/theme.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -55,9 +55,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         automaticallyImplyLeading: false,
         titleSpacing: 16,
-        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,),onPressed: (){
-          Navigator.pop(context);
-        },),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -110,8 +113,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       SizedBox(height: 5),
                       GestureDetector(
-                        onTap: ()async{
-                         Navigator.push(context,MaterialPageRoute(builder: (context)=> IncomeSection()));
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => IncomeSection(),
+                            ),
+                          );
                         },
                         child: _settingsTile(
                           icon: Icons.currency_bitcoin,
@@ -167,8 +175,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     left: 5,
                   ),
                   child: Column(
-                    mainAxisAlignment: .start,
-                    crossAxisAlignment: .start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 8,
                     children: [
                       SizedBox(height: 5),
@@ -303,7 +311,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
 
-
                               // LIGHT CHIP
                               InkWell(
                                 onTap: () {
@@ -362,8 +369,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     left: 5,
                   ),
                   child: Column(
-                    mainAxisAlignment: .start,
-                    crossAxisAlignment: .start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 8,
                     children: [
                       SizedBox(height: 5),
@@ -406,7 +413,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style: GoogleFonts.inter(
                             color: Colors.grey,
                             fontSize: 13.sp,
-                            fontWeight: .w500,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -428,8 +435,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                           child: Row(
-                            mainAxisAlignment: .center,
-                            crossAxisAlignment: .center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(Icons.delete, color: Colors.red),
                               SizedBox(width: 10.w),
@@ -485,7 +492,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: GoogleFonts.inter(
                 color: Colors.grey,
                 fontSize: 13.sp,
-                fontWeight: .w500,
+                fontWeight: FontWeight.w500,
               ),
             ),
       trailing: const Icon(Icons.arrow_forward, size: 24, color: Colors.grey),

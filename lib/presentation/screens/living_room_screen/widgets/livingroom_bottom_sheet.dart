@@ -159,7 +159,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.white,
-                        fontWeight: .w500,
+                        fontWeight: FontWeight.w500,
                       ),
                       textInputAction: TextInputAction.next,
                       //use next to go next field
@@ -235,7 +235,7 @@ class _LivingroomBottomSheetState extends State<LivingroomBottomSheet> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.white,
-                        fontWeight: .w500,
+                        fontWeight: FontWeight.w500,
                       ),
                       textInputAction: TextInputAction.done,
                       // onEditingComplete: () => FocusScope.of(context).requestFocus(passFocusMode),

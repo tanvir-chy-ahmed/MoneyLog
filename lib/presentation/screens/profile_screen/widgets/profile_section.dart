@@ -75,8 +75,8 @@ class _ProfileSectionState extends State<ProfileSection> {
                     left: 5,
                   ),
                   child: Column(
-                    crossAxisAlignment: .start,
-                    mainAxisSize: .min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     spacing: 8,
                     children: [
                       SizedBox(height: 5),
@@ -97,7 +97,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                           style: GoogleFonts.inter(
                             color: Colors.grey,
                             fontSize: 13.sp,
-                            fontWeight: .w500,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         leading: Container(
@@ -117,10 +117,10 @@ class _ProfileSectionState extends State<ProfileSection> {
                                     firstLetter.toUpperCase(),
                                     style: TextStyle(
                                       fontSize: 28.sp,
-                                      fontWeight: .bold,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
-                                    textAlign: .center,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                         ),

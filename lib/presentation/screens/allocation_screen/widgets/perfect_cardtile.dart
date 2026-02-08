@@ -15,7 +15,7 @@ class PerfectAllocation extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       width: double.infinity,
       child: Container(
-        alignment: .center,
+        alignment: Alignment.center,
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
@@ -23,13 +23,13 @@ class PerfectAllocation extends StatelessWidget {
           border: Border.all(color: colors.success, width: 1),
         ),
         child: Row(
-          mainAxisAlignment: .spaceBetween,
-          crossAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "✅ Perfectly Allocated",
               style: GoogleFonts.inter(
-                fontWeight: .bold,
+                fontWeight: FontWeight.bold,
                 fontSize: 15.sp,
                 color: colors.textMain,
               ),
@@ -38,7 +38,7 @@ class PerfectAllocation extends StatelessWidget {
               "100%",
               style: TextStyle(
                 fontSize: 18.sp,
-                fontWeight: .bold,
+                fontWeight: FontWeight.bold,
                 color: colors.marketUp,
               ),
             ),

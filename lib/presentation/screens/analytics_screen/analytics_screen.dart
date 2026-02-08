@@ -31,15 +31,15 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 title: Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Column(
-                    mainAxisAlignment: .start,
-                    crossAxisAlignment: .start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Analytics",
                         style: GoogleFonts.inter(
                           color: MyColor.textMain,
                           fontSize: 22.sp,
-                          fontWeight: .bold,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
 
@@ -50,7 +50,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                         style: GoogleFonts.inter(
                           color: Colors.grey,
                           fontSize: 15.sp,
-                          fontWeight: .w500,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -67,8 +67,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   spacing: 5,
-                  mainAxisAlignment: .start,
-                  crossAxisAlignment: .start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.30,
@@ -189,7 +189,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                           style: GoogleFonts.inter(
                             color: Colors.grey,
                             fontSize: 14.sp,
-                            fontWeight: .w500,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),

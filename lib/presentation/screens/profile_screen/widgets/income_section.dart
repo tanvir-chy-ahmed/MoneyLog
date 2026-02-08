@@ -431,10 +431,10 @@ class _IncomeSectionState extends State<IncomeSection> {
                   "F",
                   style: TextStyle(
                     fontSize: 18.sp,
-                    fontWeight: .bold,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-                  textAlign: .center,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),

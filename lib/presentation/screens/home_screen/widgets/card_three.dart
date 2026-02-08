@@ -30,7 +30,7 @@ class CardThree extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22.r),
         ),
-        clipBehavior: .antiAlias,
+        clipBehavior: Clip.antiAlias,
         child: Container(
           alignment: Alignment.topLeft,
           padding: EdgeInsets.all(16),
@@ -45,11 +45,11 @@ class CardThree extends StatelessWidget {
           ),
 
           child: Column(
-            mainAxisAlignment: .start,
-            crossAxisAlignment: .start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: .spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     height: 30.h,

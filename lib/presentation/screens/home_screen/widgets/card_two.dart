@@ -29,7 +29,7 @@ class CardTwo extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22.r),
         ),
-        clipBehavior: .antiAlias,
+        clipBehavior: Clip.antiAlias,
         child: Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -44,13 +44,13 @@ class CardTwo extends StatelessWidget {
           // decoration: const BoxDecoration(color: Color(0xFF171616)),
           child: Column(
             spacing: 11,
-            mainAxisAlignment: .center,
-            crossAxisAlignment: .start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 spacing: 8,
-                mainAxisAlignment: .start,
-                crossAxisAlignment: .center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(img, height: 20.h, width: 20.w),
                   Text(

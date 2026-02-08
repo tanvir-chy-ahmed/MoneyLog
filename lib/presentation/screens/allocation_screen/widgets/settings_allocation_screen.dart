@@ -37,20 +37,31 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
         width: MediaQuery.of(context).size.width * 0.7,
         height: 60, // Standard height for a wide button
         child: FloatingActionButton(
+          backgroundColor: colors.primary,
           onPressed: () {
             print("Changes saved!");
+            Navigator.pop(context);
 
           },
           // Using 'extended' style logic inside a standard FAB
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          child:  Text(
-            "Save Changes",
-            style: GoogleFonts.inter(
-              fontSize: 16.sp,
-            fontWeight: .bold
-            )
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: 10,
+            children: [
+              Icon(Icons.save,color: Colors.white,),
+              Text(
+                "Save Changes",
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+                  color: colors.textMain
+                )
+              ),
+            ],
           ),
         ),
       ),
@@ -74,15 +85,15 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                 icon: Icon(Icons.arrow_back, color: colors.textMuted),
               ),
               title: Column(
-                mainAxisAlignment: .start,
-                crossAxisAlignment: .start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Budget Settings",
                     style: GoogleFonts.inter(
                       color: colors.textMain,
                       fontSize: 22.sp,
-                      fontWeight: .bold,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
 
@@ -93,7 +104,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                     style: GoogleFonts.inter(
                       color: Colors.grey,
                       fontSize: 15.sp,
-                      fontWeight: .w500,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -192,7 +203,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                   ),
                   SizedBox(height: 15.h),
                   Container(
-                    alignment: .center,
+                    alignment: Alignment.center,
                     padding: EdgeInsets.only(
                       left: 16,
                       right: 16,
@@ -211,7 +222,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                           "100%",
                           style: GoogleFonts.inter(
                             fontSize: 40.sp,
-                            fontWeight: .bold,
+                            fontWeight: FontWeight.bold,
                             color: colors.marketUp,
                           ),
                         ),
@@ -219,7 +230,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                           "✨ Perfect Allocation",
                           style: GoogleFonts.inter(
                             fontSize: 16.sp,
-                            fontWeight: .bold,
+                            fontWeight: FontWeight.bold,
                             color: colors.textMain,
                           ),
                         ),
@@ -227,7 +238,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                           "Total budget must equal 100%",
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
-                            fontWeight: .bold,
+                            fontWeight: FontWeight.bold,
                             color: colors.textMuted,
                           ),
                         ),
@@ -236,8 +247,8 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                   ),
                   SizedBox(height: 15.h),
                   Row(
-                    crossAxisAlignment: .center,
-                    mainAxisAlignment: .spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Category Allocation",
@@ -250,7 +261,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                       ),
 
                       Container(
-                        alignment: .center,
+                        alignment: Alignment.center,
                         height: 30.h,
                         padding: EdgeInsets.only(left: 10, right: 10),
                         decoration: BoxDecoration(
@@ -265,7 +276,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                               "Add Entry",
                               style: TextStyle(
                                 color: colors.primary,
-                                fontWeight: .bold,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -306,26 +317,26 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment: .spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
-                                  mainAxisAlignment: .start,
-                                  crossAxisAlignment: .start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   spacing: 15,
                                   children: [
                                     Container(
-                                      alignment: .center,
+                                      alignment: Alignment.center,
                                       height: 25.h,
                                       width: 25.w,
                                       decoration: BoxDecoration(
                                         color: colors.info,
-                                        borderRadius: .circular(5.r),
+                                        borderRadius: BorderRadius.circular(5.r),
                                       ),
                                       child: Text(
                                         "1",
                                         style: GoogleFonts.roboto(
                                           fontSize: 18.sp,
-                                          fontWeight: .bold,
+                                          fontWeight: FontWeight.bold,
                                           color: colors.textMain,
                                         ),
                                       ),
@@ -334,7 +345,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                                       "Essential",
                                       style: GoogleFonts.roboto(
                                         fontSize: 18.sp,
-                                        fontWeight: .bold,
+                                        fontWeight: FontWeight.bold,
                                         color: colors.textMain,
                                       ),
                                     ),
@@ -346,7 +357,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                                       "${_sliderValue.toStringAsFixed(2)} %",
                                       style: GoogleFonts.roboto(
                                         fontSize: 20.sp,
-                                        fontWeight: .bold,
+                                        fontWeight: FontWeight.bold,
                                         color: Color(0xff6c5dd3),
                                       ),
                                     ),
@@ -354,7 +365,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                                       "35-40 ${"%"}",
                                       style: GoogleFonts.roboto(
                                         fontSize: 13.sp,
-                                        fontWeight: .bold,
+                                        fontWeight: FontWeight.bold,
                                         color: colors.textMuted,
                                       ),
                                     ),
@@ -393,12 +404,12 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                             ),
 
                             Align(
-                              alignment: .centerStart,
+                              alignment: Alignment.centerLeft,
                               child: Text(
                                 "\$ ${_sliderValue.toStringAsFixed(0)}",
                                 style: GoogleFonts.roboto(
                                   fontSize: 20.sp,
-                                  fontWeight: .bold,
+                                  fontWeight: FontWeight.bold,
                                   color: Color(0xff6c5dd3),
                                 ),
                               ),

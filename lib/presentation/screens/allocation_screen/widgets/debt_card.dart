@@ -36,8 +36,8 @@ class DebtCard extends StatelessWidget {
             ),
           ),
           child: Row(
-            mainAxisAlignment: .spaceBetween,
-            crossAxisAlignment: .center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -79,8 +79,8 @@ class DebtCard extends StatelessWidget {
                     ),
                     child: Row(
                       spacing: 5,
-                      crossAxisAlignment: .center,
-                      mainAxisAlignment: .center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           Assets.market_up,
@@ -105,7 +105,7 @@ class DebtCard extends StatelessWidget {
                 height: 120,
                 width: 120,
                 child: Stack(
-                  alignment: .center,
+                  alignment: Alignment.center,
                   children: [
                     CustomPaint(
                       size: const Size(120, 120),
