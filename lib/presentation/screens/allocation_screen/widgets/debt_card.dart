@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../../provider/net_income_provider.dart';
 import '../../../themes/theme.dart';
+import 'circular_ring.dart';
 
 class DebtCard extends StatelessWidget {
   const DebtCard({super.key});
@@ -13,10 +14,9 @@ class DebtCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
-    print("main widget rebuild");
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.24,
+      height: MediaQuery.of(context).size.height * 0.2,
       width: double.infinity,
       child: Card(
         elevation: 4,
@@ -35,65 +35,96 @@ class DebtCard extends StatelessWidget {
               ],
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
+            mainAxisAlignment: .spaceBetween,
+            crossAxisAlignment: .center,
             children: [
-              // Header Row
-              Text(
-                "Monthly Income",
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.sp,
-                  color: colors.textMuted,
-                ),
-              ),
-
-              // Amount Row
-              Consumer<NetIncomeProvider>(
-                builder: (context, value, child) {
-                  print("text widget rebuild");
-                  return Text(
-                    value.totalBudget.toString(),
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.sp,
-                      color: colors.textMain,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
+                children: [
+                  // Header Row
+                  Text(
+                    "Monthly Income",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.sp,
+                      color: colors.textMuted,
                     ),
-                  );
-                },
+                  ),
+
+                  // Amount Row
+                  Consumer<NetIncomeProvider>(
+                    builder: (context, value, child) {
+                      print("text widget rebuild");
+                      return Text(
+                        "\$${value.totalBudget}",
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30.sp,
+                          color: colors.textMain,
+                        ),
+                      );
+                    },
+                  ),
+
+                  Container(
+                    height: 25.h,
+                    width: 90.w,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: colors.marketUp.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: Row(
+                      spacing: 5,
+                      crossAxisAlignment: .center,
+                      mainAxisAlignment: .center,
+                      children: [
+                        Image.asset(
+                          Assets.market_up,
+                          height: 20,
+                          width: 20,
+                          color: colors.success,
+                        ),
+                        Text(
+                          "Recurring",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12.sp,
+                            color: colors.success,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ), // Pushes bottom text down if needed
-
-
-
-
-              Container(
-                height: 30.h,
-                width: 80.w,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: colors.marketUp.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(12.r)
-                ),
-                child: Row(
+                height: 120,
+                width: 120,
+                child: Stack(
+                  alignment: .center,
                   children: [
-                    Image.asset(Assets.market_up,height: 20,width: 20,),
+                    CustomPaint(
+                      size: const Size(120, 120),
+                      painter: CirclePainter(
+                        color: colors.marketUp,
+                        radius: 50,
+                      ),
+                    ),
                     Text(
-                      "Recurring",
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.sp,
+                      "100%",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                         color: colors.marketUp,
                       ),
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

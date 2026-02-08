@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moneylog/presentation/screens/allocation_screen/widgets/settings_allocation_screen.dart';
+import 'package:moneylog/presentation/screens/allocation_screen/widgets/categories_card.dart';
 import 'package:moneylog/presentation/screens/allocation_screen/widgets/debt_card.dart';
-import 'package:moneylog/presentation/screens/home_screen/widgets/card_one.dart';
+import 'package:moneylog/presentation/screens/allocation_screen/widgets/perfect_cardtile.dart';
 
 import '../../themes/theme.dart';
 
@@ -66,7 +68,36 @@ class _AllocationScreenState extends State<AllocationScreen> {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => SettingsAllocationScreen(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            // Apply curve for smooth animation
+                            final curvedAnimation = CurvedAnimation(
+                              parent: animation,
+                              curve: Curves.easeInOut,
+                            );
+
+                            // Fade transition
+                            final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation);
+
+                            // Scale transition
+                            final scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(curvedAnimation);
+
+                            return FadeTransition(
+                              opacity: fadeAnimation,
+                              child: ScaleTransition(
+                                scale: scaleAnimation,
+                                child: child,
+                              ),
+                            );
+                          },
+                          transitionDuration: const Duration(milliseconds: 200), // Smooth duration
+                        ),
+                      );
+
+                    },
                     icon: Icon(Icons.settings, color: colors.primary, size: 25),
                   ),
                 ),
@@ -75,10 +106,38 @@ class _AllocationScreenState extends State<AllocationScreen> {
 
             /// Body Content
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-              sliver: SliverList(delegate: SliverChildListDelegate([
-                DebtCard()
-              ])),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  DebtCard(),
+                  SizedBox(height: 20),
+                  PerfectAllocation(),
+                  SizedBox(height: 20),
+                  Text(
+                    "Categories",
+                    style: GoogleFonts.inter(
+                      color: colors.textMain,
+                      fontSize: 18.sp,
+                      fontWeight: .bold,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: 10,
+                      (context, index) => Padding(
+                        padding: const EdgeInsetsGeometry.only(bottom: 20),
+                        child: CategoriesCard(
+                          count: index+1,
+                        ),
+                      ),
+
+                ),
+              ),
             ),
           ],
         ),
