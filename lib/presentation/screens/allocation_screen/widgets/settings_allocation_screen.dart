@@ -22,6 +22,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
   }
 
   double _sliderValue = 36;
+  final ScrollController
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +42,24 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
           onPressed: () {
             print("Changes saved!");
             Navigator.pop(context);
-
           },
           // Using 'extended' style logic inside a standard FAB
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          child:  Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 10,
             children: [
-              Icon(Icons.save,color: Colors.white,),
+              Icon(Icons.save, color: Colors.white),
               Text(
                 "Save Changes",
                 style: GoogleFonts.inter(
                   fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                  color: colors.textMain
-                )
+                  fontWeight: FontWeight.bold,
+                  color: colors.textMain,
+                ),
               ),
             ],
           ),
@@ -330,7 +330,9 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                                       width: 25.w,
                                       decoration: BoxDecoration(
                                         color: colors.info,
-                                        borderRadius: BorderRadius.circular(5.r),
+                                        borderRadius: BorderRadius.circular(
+                                          5.r,
+                                        ),
                                       ),
                                       child: Text(
                                         "1",
@@ -417,6 +419,44 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                           ],
                         ),
                       ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            /// Reset Button at the end of the scroll
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  top: 10.h,
+                  bottom:
+                      120.h, // Extra space so it's not hidden by the Save FAB
+                ),
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      // // Add your reset logic here
+                      // _sliderValue = 36;
+                      // incomeCtrl.clear();
+                    });
+                  },
+                  icon: const Icon(Icons.refresh, color: Colors.redAccent),
+                  label: Text(
+                    "Reset to Default",
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    side: const BorderSide(color: Colors.redAccent),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
                 ),

@@ -7,45 +7,65 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build:
-    name: Build & Release
+  # JOB 1: Android Build (Runs on Windows to save costs)
+  build-android:
+    name: Build Android
     runs-on: windows-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
-          # Pulls the absolute latest stable version (3.38.9+)
           channel: 'stable'
           cache: true
-
-      - name: Install Dependencies
+      - name: Build APK
         run: |
-          flutter pub upgrade --major-versions
+          flutter pub get
+          flutter build apk --release --split-per-abi
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release
+          path: build/app/outputs/apk/release/*.apk
 
-      - name: Build Android APK
-        run: flutter build apk --release --split-per-abi
-
+  # JOB 2: iOS Build (Must run on macOS for Xcode)
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
       - name: Build iOS IPA
-        shell: bash
         run: |
-          flutter build ios --no-codesign
+          flutter pub get
+          # The --no-codesign flag only works on macOS runners
+          flutter build ios --release --no-codesign 
           cd build/ios/iphoneos
-          mkdir -p Payload
+          mkdir Payload
           cp -R Runner.app Payload/
-          zip -r app.ipa Payload
+          zip -r ../../../app.ipa Payload
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release
+          path: app.ipa
 
-      - name: Push to Releases
+  # JOB 3: Create GitHub Release (Combines both)
+  release:
+    needs: [build-android, build-ios]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+      - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+          artifacts: "*/*.apk,*/*.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
