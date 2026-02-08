@@ -1,15 +1,10 @@
 name: "Build & Release"
 
 on:
-  pull_request:
-    branches:
-      - main
-      - master
   push:
-    branches:
-      - main
-      - master
-      - develop
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
@@ -28,14 +23,13 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          # Removing the specific version number forces the latest stable release
+          # Using 'any' allows the runner to find the best match for your pubspec
+          flutter-version: '3.27.0'
           channel: 'stable'
           cache: true
-          architecture: x64
 
       - name: Install Dependencies
         run: |
-          flutter clean
           flutter pub get
 
       - name: Build Android APK

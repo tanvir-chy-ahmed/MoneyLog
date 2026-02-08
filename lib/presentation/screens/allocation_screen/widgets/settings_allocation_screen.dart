@@ -29,11 +29,26 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
     return Scaffold(
       backgroundColor: colors.bgApp,
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text("Save Changes",style: TextStyle(
+      // This centers the FAB horizontally
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
-        ),),
+      floatingActionButton: SizedBox(
+        // Sets the width to 70% of the screen
+        width: MediaQuery.of(context).size.width * 0.7,
+        height: 60, // Standard height for a wide button
+        child: FloatingActionButton(
+          onPressed: () {
+            print("Changes saved!");
+          },
+          // Using 'extended' style logic inside a standard FAB
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: const Text(
+            "Save Changes",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
       body: SafeArea(
         child: CustomScrollView(
