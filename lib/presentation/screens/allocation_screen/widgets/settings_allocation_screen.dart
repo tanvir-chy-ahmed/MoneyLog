@@ -14,15 +14,15 @@ class SettingsAllocationScreen extends StatefulWidget {
 
 class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
   TextEditingController incomeCtrl = TextEditingController();
+  double _sliderValue = 36;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void dispose() {
     incomeCtrl.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
-
-  double _sliderValue = 36;
-  final ScrollController
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +67,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
       ),
       body: SafeArea(
         child: CustomScrollView(
+          controller: _scrollController,
           physics: const BouncingScrollPhysics(),
           slivers: [
             /// AppBar
@@ -110,7 +111,6 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                 ],
               ),
             ),
-
             /// Body Content
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -424,8 +424,6 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                 ),
               ),
             ),
-
-            /// Reset Button at the end of the scroll
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.only(
@@ -439,9 +437,14 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                   onPressed: () {
                     setState(() {
                       // // Add your reset logic here
-                      // _sliderValue = 36;
-                      // incomeCtrl.clear();
+                      _sliderValue = 36;
+                      incomeCtrl.clear();
                     });
+                    _scrollController.animateTo(
+                      0,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
                   },
                   icon: const Icon(Icons.refresh, color: Colors.redAccent),
                   label: Text(
