@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:moneylog/presentation/themes/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../themes/theme.dart';
-
-class SettingsAllocationScreen extends StatefulWidget {
-  const SettingsAllocationScreen({super.key});
+class SubcategoryScreen extends StatefulWidget {
+  const SubcategoryScreen({super.key});
 
   @override
-  State<SettingsAllocationScreen> createState() =>
-      _SettingsAllocationScreenState();
+  State<SubcategoryScreen> createState() => _SubcategoryScreenState();
 }
 
-class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
-  TextEditingController incomeCtrl = TextEditingController();
-  double _sliderValue = 36;
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    incomeCtrl.dispose();
-    _scrollController.dispose();
-    super.dispose();
-  }
-
+class _SubcategoryScreenState extends State<SubcategoryScreen> {
+    final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
-
-    //   final ScrollController _scrollController = ScrollController();
     return Scaffold(
       backgroundColor: colors.bgApp,
 
@@ -127,7 +113,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                       side: BorderSide(
                         color: Colors.white.withOpacity(0.10),
                         width:
-                            0.8, // Using a fixed width or .w if using ScreenUtil
+                        0.8, // Using a fixed width or .w if using ScreenUtil
                       ),
                     ),
                     clipBehavior: Clip.antiAlias,
@@ -176,16 +162,16 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                                 ),
                                 suffixIcon: incomeCtrl.text.isNotEmpty
                                     ? IconButton(
-                                        icon: const Icon(
-                                          Icons.clear,
-                                          size: 18,
-                                          color: Colors.white54,
-                                        ),
-                                        onPressed: () {
-                                          incomeCtrl.clear();
-                                          setState(() {});
-                                        },
-                                      )
+                                  icon: const Icon(
+                                    Icons.clear,
+                                    size: 18,
+                                    color: Colors.white54,
+                                  ),
+                                  onPressed: () {
+                                    incomeCtrl.clear();
+                                    setState(() {});
+                                  },
+                                )
                                     : null,
                                 filled: true,
                                 fillColor: const Color(0xff1e1e1e),
@@ -295,7 +281,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   childCount: 10,
-                  (context, index) => Padding(
+                      (context, index) => Padding(
                     padding: const EdgeInsetsGeometry.only(bottom: 20),
                     child: Card(
                       elevation: 6,
@@ -433,7 +419,7 @@ class _SettingsAllocationScreenState extends State<SettingsAllocationScreen> {
                   right: 20.w,
                   top: 10.h,
                   bottom:
-                      120.h, // Extra space so it's not hidden by the Save FAB
+                  120.h, // Extra space so it's not hidden by the Save FAB
                 ),
                 child: OutlinedButton.icon(
                   onPressed: () {
